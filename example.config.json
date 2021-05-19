@@ -1,0 +1,6 @@
+{
+  "sample": {
+    "http_port": 8081,
+    "rpc_endpoint": "localhost:9001"
+  }
+}
