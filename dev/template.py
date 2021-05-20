@@ -68,7 +68,7 @@ go 1.16
 require (
 	github.com/golang/glog v0.0.0-20210429001901-424d2337a529
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.4.0
-	github.com/open-testing-platform/go-rpc v0.0.0-20210519094701-23c33ef2369c
 	google.golang.org/grpc v1.37.1
+	github.com/open-testing-platform/go-rpc
 )
 """
