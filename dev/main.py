@@ -20,7 +20,7 @@ def app():
 @click.option(
     "-o",
     "--output",
-    type=click.Path(dir_okay=True),
+    type=click.STRING,
     required=True,
     help="Output directory for generated repo",
 )
@@ -28,8 +28,12 @@ def gw_gen(file, output):
     """
     Generate grpc gateway
     """
+    if not os.path.isabs(output):
+        output = os.path.join(os.getcwd(), output)
+    if not os.path.exists(output):
+        os.mkdir(output)
+
     config = json.load(file)
-    click.echo(config)
     for service_name in config:
         http_port = config[service_name]["http_port"]
         rpc_endpoint = config[service_name]["rpc_endpoint"]
