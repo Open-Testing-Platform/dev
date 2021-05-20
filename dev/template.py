@@ -10,7 +10,7 @@ import (
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
 
-	gw "github.com/open-testing-platform/go-rpc/{SERVICE_NAME}" // Update
+	gw "github.com/open-testing-platform/go-rpc/{SERVICE_NAME}"
 )
 
 var (
@@ -19,7 +19,7 @@ var (
 	grpcServerEndpoint = flag.String("grpc-server-endpoint", "{RPC_ENDPOINT}", "gRPC server endpoint")
 )
 
-func Run() error {{
+func run() error {{
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
@@ -36,6 +36,15 @@ func Run() error {{
 	// Start HTTP server (and proxy calls to gRPC server endpoint)
 	return http.ListenAndServe(":{HTTP_PORT}", mux)
 }}
+
+func main() {
+  flag.Parse()
+  defer glog.Flush()
+
+  if err := run(); err != nil {
+    glog.Fatal(err)
+  }
+}
 """
 
 dockerfile_go_gw = """
