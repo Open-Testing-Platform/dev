@@ -54,10 +54,6 @@ def gw_gen(file, output):
                 )
             )
 
-        go_mod_path = os.path.join(service_dir, "go.mod")
-        with open(go_mod_path, "w") as fo:
-            fo.write(template.go_mod_gw)
-
 
 if __name__ == "__main__":
     app()

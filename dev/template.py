@@ -1,5 +1,5 @@
 main_go_gw = """
-package {SERVICE_NAME}
+package main
 
 import (
 	"context"
@@ -45,7 +45,9 @@ WORKDIR /app
 
 ADD . .
 
-RUN go build -o main
+RUN go mod init github.com/open-testing-platform/grpc-gateway && \
+	go mod tidy && \
+	go build -o main
 
 FROM alpine
 
@@ -58,17 +60,4 @@ EXPOSE {HTTP_PORT}
 ENTRYPOINT [ "./main" ]
 
 CMD /bin/sh
-"""
-
-go_mod_gw = """
-module github.com/open-testing-platform/grpc-gateway
-
-go 1.16
-
-require (
-	github.com/golang/glog v0.0.0-20210429001901-424d2337a529
-	github.com/grpc-ecosystem/grpc-gateway/v2 v2.4.0
-	google.golang.org/grpc v1.37.1
-	github.com/open-testing-platform/go-rpc
-)
 """
