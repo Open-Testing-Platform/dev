@@ -37,14 +37,14 @@ func run() error {{
 	return http.ListenAndServe(":{HTTP_PORT}", mux)
 }}
 
-func main() {
+func main() {{
   flag.Parse()
   defer glog.Flush()
 
-  if err := run(); err != nil {
+  if err := run(); err != nil {{
     glog.Fatal(err)
-  }
-}
+  }}
+}}
 """
 
 dockerfile_go_gw = """
